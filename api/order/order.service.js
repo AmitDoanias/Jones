@@ -3,7 +3,7 @@ const alsService = require('../../services/als.service')
 const ObjectId = require('mongodb').ObjectId
 
 
-const COLLECTION_NAME = 'order'
+const COLLECTION_NAME = 'orders'
 
 module.exports = {
     query,
@@ -11,29 +11,11 @@ module.exports = {
 }
 
 async function query(filterBy) {
+    console.log('inside query from service')
     let criteria = {}
-    let { name, inStock, labels, sortBy } = filterBy
-
-    if (name) {
-        const regex = new RegExp(name, 'i')
-        criteria.name = { $regex: regex }
-    }
-
-    if (inStock) {
-        inStock = inStock === 'true'
-        criteria.inStock = inStock
-    }
-
-    if (labels && labels.length > 0) {
-        criteria.labels = { $in: labels }
-    }
-
     try {
         const collection = await dbService.getCollection(COLLECTION_NAME)
-        let orders = await collection.find(criteria)
-        if (sortBy) orders.collation({ locale: 'en' }).sort({ [sortBy]: 1 }) //collation make it case insensitive
-
-        orders = await orders.toArray()
+        let orders = await collection.find(criteria).toArray()
 
         orders = orders.map(order => {
             order.createdAt = ObjectId(order._id).getTimestamp()
@@ -48,22 +30,25 @@ async function query(filterBy) {
     }
 }
 
+
 async function add(order) {
+    console.log('ORDER', order)
     try {
-        const { loggedInUser } = alsService.getStore()
         const collection = await dbService.getCollection(COLLECTION_NAME)
 
         const newOrder = {
-            name: order.name,
-            img: order.img,
+            meal: order.meal,
             price: order.price,
-            labels: order.labels,
-            inStock: order.inStock,
-            owner: {
-                _id: ObjectId(loggedInUser._id),
-                fullname: loggedInUser.fullname
+            createdAt: order.createdAt = ObjectId(order._id).getTimestamp(),
+            user: {
+                _id: ObjectId(order.user.userId),
+                firstName: order.user.firstName,
+                lastName: order.user.lastName,
+                address: order.user.address,
+                creditCard: order.user.creditCard
             },
         }
+
 
         const res = await collection.insertOne(newOrder)
         if (!res.insertedId) return null //will cause error 401
@@ -75,3 +60,30 @@ async function add(order) {
         throw err
     }
 }
+
+
+
+// [
+//     {
+//         "meal": "Meat,Sushi",
+//         "price": "154",
+//         "user": {
+//             "userId": "0",
+//             "firstName": "Dudi",
+//             "lastName": "Cohen",
+//             "address": "Hatizmoret 40",
+//             "creditCard": "5324102910102948"
+//         }
+//     },
+//     {
+//         "meal": "Pizza,Coca Cola",
+//         "price": "89",
+//         "user": {
+//             "userId": "1",
+//             "firstName": "Menny",
+//             "lastName": "Levi",
+//             "address": "Hatizmoret 42",
+//             "creditCard": "5324102912941038"
+//         }
+//     }
+// ]

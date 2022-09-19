@@ -1,4 +1,4 @@
-const toyService = require('./order.service')
+const orderService = require('./order.service')
 
 module.exports = {
     getOrders,
@@ -6,23 +6,26 @@ module.exports = {
 }
 
 async function getOrders(req, res) {
+    console.log('inside getOrders from controller')
     try {
         const filterBy = req.query
-        const toys = await toyService.query(filterBy || '{}')
-        res.send(toys)
+        const orders = await orderService.query(filterBy || '{}')
+        res.send(orders)
     } catch (err) {
-        res.status(500).send({ err: 'Failed to get toys' })
+        res.status(500).send({ err: 'Failed to get orders' })
     }
 }
 
 async function addOrder(req, res) {
     try {
-        let toy = req.body
-        const savedToy = await toyService.add(toy)
-        if (!savedToy) return res.status(401).send('Failed to add toy')
-        res.send(savedToy)
+        console.log('addOrder controller')
+        let order = req.body
+        const savedOrder = await orderService.add(order)
+        console.log('savedOrder', savedOrder)
+        if (!savedOrder) return res.status(401).send('Failed to add order')
+        res.send(savedOrder)
     } catch (err) {
-        res.status(500).send({ err: 'Failed to add toy' })
+        res.status(500).send({ err: 'Failed to add order' })
     }
 }
 

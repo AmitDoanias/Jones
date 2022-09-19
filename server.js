@@ -42,7 +42,6 @@ app.use('/api/user', userRoutes)
 app.use('/api/order', orderRoutes)
 
 
-
 /* LAST FALLBACK */
 app.get('/**', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public', 'index.html'))

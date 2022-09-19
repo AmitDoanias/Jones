@@ -1,13 +1,11 @@
 const MongoClient = require('mongodb').MongoClient
 
-
 const config = require('../config')
 
 module.exports = {
     getCollection
 }
 
-/* FIX - Database name */
 const dbName = 'ordersDB'
 let dbConn = null
 
