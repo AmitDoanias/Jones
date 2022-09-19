@@ -6,7 +6,6 @@ module.exports = {
 }
 
 async function getOrders(req, res) {
-    console.log('inside getOrders from controller')
     try {
         const filterBy = req.query
         const orders = await orderService.query(filterBy || '{}')
@@ -18,7 +17,6 @@ async function getOrders(req, res) {
 
 async function addOrder(req, res) {
     try {
-        console.log('addOrder controller')
         let order = req.body
         const savedOrder = await orderService.add(order)
         console.log('savedOrder', savedOrder)
