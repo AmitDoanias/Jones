@@ -25,3 +25,4 @@ git clone https://github.com/AmitDoanias/getJones.git
 ```
 npm start
 ```
+Runs the app in the development mode.
