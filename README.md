@@ -4,7 +4,6 @@ An task I wrote with NodeJS
 
 ### Table of Contents
 - [Description](#description)
-- [Features](#features)
 - [Getting started](#getting-started)
 
 ## Description
