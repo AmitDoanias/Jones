@@ -8,7 +8,8 @@ An task I wrote with NodeJS
 
 ## Description
 a bit about the task - was built in a few hours
-Adding a new order, get orders from last day.
+■ Save new order
+■ Get all orders from the last day
 
 
 #### Technologies
