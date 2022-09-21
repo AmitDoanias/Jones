@@ -6,7 +6,6 @@ An task I wrote with NodeJS
 - [Description](#description)
 - [Features](#features)
 - [Getting started](#getting-started)
-- [Showcase](#showcase)
 
 ## Description
 a bit about the task - was built in a few hours
