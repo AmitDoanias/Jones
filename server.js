@@ -6,14 +6,12 @@
 // 5. Init git
 
 const express = require('express')
-const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const path = require('path')
 
 const app = express()
 const http = require('http').createServer(app)
 
-app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('public'))
 
@@ -28,17 +26,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 //ROUTES
-const setupAsyncLocalStorage = require('./middlewares/setup.als.middleware')
-app.all('*', setupAsyncLocalStorage)
-
-/* FIX - update routes */
-const authRoutes = require('./api/auth/auth.routes')
-const userRoutes = require('./api/user/user.routes')
 const orderRoutes = require('./api/order/order.routes')
 
-
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
 app.use('/api/order', orderRoutes)
 
 
