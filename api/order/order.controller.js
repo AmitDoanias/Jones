@@ -7,8 +7,7 @@ module.exports = {
 
 async function getOrders(req, res) {
     try {
-        const filterBy = req.query
-        const orders = await orderService.query(filterBy || '{}')
+        const orders = await orderService.query()
         res.send(orders)
     } catch (err) {
         res.status(500).send({ err: 'Failed to get orders' })
@@ -18,8 +17,7 @@ async function getOrders(req, res) {
 async function addOrder(req, res) {
     try {
         let order = req.body
-        const savedOrder = await orderService.add(order)
-        console.log('savedOrder', savedOrder)
+        const savedOrder = await orderService.addOrder(order)
         if (!savedOrder) return res.status(401).send('Failed to add order')
         res.send(savedOrder)
     } catch (err) {

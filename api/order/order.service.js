@@ -1,12 +1,11 @@
 const dbService = require('../../services/db.service')
-
 const ObjectId = require('mongodb').ObjectId
 
 const COLLECTION_NAME = 'orders'
 
 module.exports = {
     query,
-    add,
+    addOrder,
 }
 
 async function query() {
@@ -35,7 +34,7 @@ async function query() {
     }
 }
 
-async function add(order) {
+async function addOrder(order) {
     try {
         const collection = await dbService.getCollection(COLLECTION_NAME)
 

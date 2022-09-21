@@ -10,8 +10,6 @@ const cors = require('cors')
 const path = require('path')
 
 const app = express()
-const http = require('http').createServer(app)
-
 app.use(express.json())
 app.use(express.static('public'))
 
@@ -27,7 +25,6 @@ if (process.env.NODE_ENV === 'production') {
 
 //ROUTES
 const orderRoutes = require('./api/order/order.routes')
-
 app.use('/api/order', orderRoutes)
 
 
@@ -38,6 +35,6 @@ app.get('/**', (req, res) => {
 
 const PORT = process.env.PORT || 3030
 
-http.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`)
 })
