@@ -25,6 +25,10 @@ Open the terminal and enter the following line to run it locally on your compute
 ```
 npm install
 ```
+```
 npm start
 ```
+```
 Runs the app in development mode.
+```
+
