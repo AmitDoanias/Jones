@@ -1,5 +1,5 @@
 # getJones
-An task I wrote with NodeJS
+A task I wrote with NodeJS
 [Take a look, it's on Github pages](https://github.com/AmitDoanias/POSIT "Github pages link")
 
 ### Table of Contents
@@ -7,21 +7,22 @@ An task I wrote with NodeJS
 - [Getting started](#getting-started)
 
 ## Description
-a bit about the task - was built in a few hours
+The task i was built in few hours
 - Save new order
 - Get all orders from the last day
 
 
 #### Technologies
-- Node.JS
-- RESTful API
+- Node.JS with Express
 - MongoDB
 
 ## Getting started
-Clone the project or dowload the files on top.
+Clone the project or download the files on top.
 ```
 git clone https://github.com/AmitDoanias/getJones.git
 ```
+npm install
+```
 npm start
 ```
-Runs the app in the development mode.
+Runs the app in development mode.
