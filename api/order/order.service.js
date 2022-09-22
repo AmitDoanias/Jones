@@ -11,19 +11,13 @@ module.exports = {
 async function query() {
     let criteria = {}
 
-    //Option 1: 
-    // const midNight = new Date()
-    // midNight.setHours(3, 0, 0, 0)
-
-    //Option 2:
-    utcTime = new Date()
-    midNight = new Date(utcTime.setUTCHours(0, 0, 0, 0))
+    const utcTime = new Date()
+    const midNight = new Date(utcTime.setUTCHours(0, 0, 0, 0))
 
     criteria.createdAt = {
         $gte: midNight
     }
 
-    console.log('criteria', criteria)
     try {
         const collection = await dbService.getCollection(COLLECTION_NAME)
         let orders = await collection.find(criteria).toArray()
@@ -35,20 +29,22 @@ async function query() {
 }
 
 async function addOrder(order) {
+
+    let { meal, price, user } = order
     try {
         const collection = await dbService.getCollection(COLLECTION_NAME)
 
         const newOrder = {
-            meal: order.meal,
-            price: order.price,
+            meal: meal,
+            price: price,
             createdAt: _changeTimeZone(new Date()),
 
             user: {
-                _id: ObjectId(order.user.userId),
-                firstName: order.user.firstName,
-                lastName: order.user.lastName,
-                address: order.user.address,
-                creditCard: order.user.creditCard,
+                _id: ObjectId(user.userId),
+                firstName: user.firstName,
+                lastName: user.lastName,
+                address: user.address,
+                creditCard: user.creditCard,
             },
         }
         const res = await collection.insertOne(newOrder)
@@ -63,6 +59,6 @@ async function addOrder(order) {
 }
 
 function _changeTimeZone(date) {
-    let tzoffset = date.getTimezoneOffset() * 60 * 1000
-    return (new Date(Date.now() - tzoffset))
+    const tzOffSet = date.getTimezoneOffset() * 60 * 1000
+    return (new Date(Date.now() - tzOffSet))
 }

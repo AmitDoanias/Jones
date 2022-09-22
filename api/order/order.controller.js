@@ -16,7 +16,7 @@ async function getOrders(req, res) {
 
 async function addOrder(req, res) {
     try {
-        let order = req.body
+        const order = req.body
         const savedOrder = await orderService.addOrder(order)
         if (!savedOrder) return res.status(401).send('Failed to add order')
         res.send(savedOrder)

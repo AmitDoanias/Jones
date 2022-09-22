@@ -1,9 +1,4 @@
-/* FIX - At the beginning: */
-// 1. Update project name at package.json and package-lock.json.
-// 2. Remove installations if not in use from package.json.
-// 3. Update database name in db.service.js
-// 4. Remove this comment.
-// 5. Init git
+
 
 const express = require('express')
 const cors = require('cors')
@@ -35,6 +30,10 @@ app.get('/**', (req, res) => {
 
 const PORT = process.env.PORT || 3030
 
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`)
-})
+if (!module.parent) { // delete
+    app.listen(PORT, () => {
+        console.log(`Server listening on ${PORT}`)
+    })
+} // also
+
+module.exports = app

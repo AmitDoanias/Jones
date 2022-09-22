@@ -7,7 +7,7 @@ module.exports = {
 }
 
 const dbName = 'ordersDB'
-let dbConn = null
+let dbConnection = null
 
 async function getCollection(collectionName) {
     try {
@@ -20,11 +20,11 @@ async function getCollection(collectionName) {
 }
 
 async function connect() {
-    if (dbConn) return dbConn
+    if (dbConnection) return dbConnection
     try {
         const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
         const db = client.db(dbName)
-        dbConn = db
+        dbConnection = db
         return db
     } catch (err) {
         throw err
