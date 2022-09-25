@@ -1,6 +1,6 @@
 # getJones
 A task I wrote with NodeJS
-[Take a look, it's on Github pages](https://github.com/AmitDoanias/POSIT "Github pages link")
+[Take a look, it's on Github pages](https://github.com/AmitDoanias/Jones "Github pages link")
 
 ### Table of Contents
 - [Description](#description)
@@ -19,7 +19,7 @@ The task i was built in few hours
 ## Getting started
 Clone the project or download the files on top.
 ```
-git clone https://github.com/AmitDoanias/getJones.git
+git clone https://github.com/AmitDoanias/Jones.git
 ```
 Open the terminal and enter the following line to run it locally on your computer:
 ```
