@@ -1,4 +1,4 @@
-# getJones
+# Jones
 A task I wrote with NodeJS
 [Take a look, it's on Github pages](https://github.com/AmitDoanias/Jones "Github pages link")
 
